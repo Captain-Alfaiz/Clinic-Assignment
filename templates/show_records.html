@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ADD RECORD | Alfaiz
+{% endblock %}
+
+{% block body %}
+  <div class="jumbotron">
+    <div class="row">
+    <div class="container col-md-1"></div>
+    <div class="container col-md-10">
+        <table class="table table-bordered" id="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Symptoms</th>
+                <th scope="col">Prescription</th>
+                <th scope="col">Date of Visit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in data %}
+              <tr>
+                <th scope="row">{{ d.id }}</th>
+                <td>{{ d.name }}</td>
+                <td>{{ d.age }}</td>
+                <td>{{ d.gender }}</td>
+                <td>{{ d.symptoms }}</td>
+                <td>{{ d.prescription }}</td>
+                <td>{{ d.date_of_visit }}</td>
+                <td>
+                  <form action="delete_data">
+                    <input type="hidden" name="id" value="{{d.id}}">
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    <div class="container col-md-1"></div>
+  </div>
+{% endblock %}
